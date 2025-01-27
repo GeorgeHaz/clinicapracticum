@@ -5,6 +5,7 @@ use App\Http\Controllers\DoctorsController;
 use App\Http\Controllers\HistoriesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,9 @@ Route::middleware('splade')->group(function () {
     Route::resource('histories', HistoriesController::class);
 
     Route::resource('doctors', DoctorsController::class);
+
+    Route::resource('secretaries', SecretariesController::class);
+
 
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', function () {
