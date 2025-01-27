@@ -7,6 +7,7 @@ use App\Models\Specialties;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use ProtoneMedia\Splade\Facades\Toast;
 
 class ProfileController extends Controller
 {
@@ -44,8 +45,9 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        Toast::title('Paciente creado exitosamente')
+            ->autoDismiss(3);
+        return Redirect::route('profile.edit');
     }
 
     /**
