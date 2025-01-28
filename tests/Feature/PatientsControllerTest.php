@@ -13,6 +13,7 @@ beforeEach(function () {
     // Crear un usuario administrador
     $this->admin = User::factory()->create([
         'dni' => '2374834627',
+        'email'=>'jasm@gmail.com',
         'user' => 'jasm',
         'name'=>'juanito',
         'last_name'=>'perez',
