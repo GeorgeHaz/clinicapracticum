@@ -33,9 +33,9 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'dni' => 'required|string|unique:patients|max:255', // Asegura que la cédula sea única
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'dni' => 'required|string|unique:patients|max:255', // Asegura que la cédula sea única
             'birthdate' => 'required|date',
             'gener' => 'required|in:Masculino,Femenino,Otro',
             'direction' => 'required',
