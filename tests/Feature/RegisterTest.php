@@ -1,9 +1,12 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-
 use function Pest\Laravel\post;
+use function Pest\Laravel\assertDatabaseHas;
+
+uses(RefreshDatabase::class);
 
 test('permite que un usuario se registre con exito', function () {
     $response = post('/register', [
@@ -20,11 +23,11 @@ test('permite que un usuario se registre con exito', function () {
     $response->assertRedirect('/dashboard'); // Ajusta según tu redirección post-registro
 
     // Verificar que el usuario se creó en la base de datos
-    $this->assertDatabaseHas('users', [
+    assertDatabaseHas('users', [
         'email' => 'johndoe@example.com',
     ]);
 
     // Verificar que la contraseña está encriptada
     $user = User::where('email', 'johndoe@example.com')->first();
-    $this->assertTrue(Hash::check('password123', $user->password));
+    expect(Hash::check('password123', $user->password))->toBeTrue();
 });

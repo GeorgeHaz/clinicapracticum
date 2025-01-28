@@ -23,7 +23,7 @@ class PatientsFactory extends Factory
             'last_name' => $this->faker->lastName,
             'dni' => $this->faker->unique()->numerify('##########'), // Ejemplo de DNI único
             'birthdate' => $this->faker->date(),
-            'gener' => $this->faker->randomElement(['Masculino', 'Femenino', 'Otro']),
+            'gener' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'direction' => $this->faker->address,
             'telephone' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail,
@@ -31,7 +31,7 @@ class PatientsFactory extends Factory
             'allergies' => $this->faker->optional()->sentence,
             'diseases' => $this->faker->optional()->sentence,
             'emergency_contact_name' => $this->faker->name,
-            'emergency_contact_phone' => $this->faker->phoneNumber,
+            'emergency_contact_telephone' => $this->faker->phoneNumber,
         ];
     }
 }

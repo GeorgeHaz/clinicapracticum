@@ -40,7 +40,7 @@ class PatientsController extends Controller
             'gener' => 'required|in:Masculino,Femenino,Otro',
             'direction' => 'required',
             'telephone' => 'required|max:255',
-            'email' => 'nullable|email:rfc,dns',
+            'email' => 'required|email:rfc,dns',
             'blood_group' => 'nullable|max:255',
             'allergies' => 'nullable',
             'diseases' => 'nullable',
@@ -80,14 +80,14 @@ class PatientsController extends Controller
     public function update(Request $request, Patients $patient)
     {
         $validatedData = $request->validate([
+            'dni' => 'required|string|max:255|unique:patients,dni,' . $patient->id,
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'dni' => 'required|string|max:255|unique:patients,dni,' . $patient->id,
             'birthdate' => 'required|date',
             'gener' => 'required|in:Masculino,Femenino,Otro',
             'direction' => 'required',
             'telephone' => 'required|max:255',
-            'email' => 'nullable|email:rfc,dns',
+            'email' => 'required|email:rfc,dns',
             'blood_group' => 'nullable|max:255',
             'allergies' => 'nullable',
             'diseases' => 'nullable',
