@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,15 @@ Route::middleware('splade')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/users', [UserController::class, 'index'])->name('users.index'); // Mostrar usuarios
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // Formulario de creación
+        Route::post('/users', [UserController::class, 'store'])->name('users.store'); // Guardar nuevo usuario
+        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::get('/users/{user}', [UserController::class, 'edit'])->name('users.edit');
+
     });
 
     require __DIR__.'/auth.php';

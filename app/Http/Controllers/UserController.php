@@ -1,34 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\Tables\UsersTable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use ProtoneMedia\Splade\Facades\Toast;
 
-class RegisteredUserController extends Controller
+class UserController extends Controller
 {
     /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
+     * Display a listing of the resource.
      */
-    public function create()
+    public function index()
     {
-        return view('auth.register');
+        return view('users.index',[
+            'users' => UsersTable::class
+        ]);
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
@@ -52,12 +54,40 @@ class RegisteredUserController extends Controller
             'rol' => $request->rol,
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
         Toast::title('Registro Exitoso')->autoDismiss(3);
 
-        return redirect('/dashboard');
+        redirect()->route('users.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

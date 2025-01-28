@@ -1,5 +1,6 @@
 {
     "Dashboard":"Panel",
+    "Main Page":"Pagina Principal",
     "Profile":"Perfil",
     "Sign Out":"Cerrar Sesion",
     "Log In":"Ingresar",
@@ -40,6 +41,8 @@
     "Profile Information":"Informacion de Perfil",
     "Update your account's profile information and email address.":"Actualice la información del perfil y la dirección de correo electrónico de su cuenta.",
     "Name":"Nombre",
+    "Last Name":"Apellido",
+    "User":"Usuario",
     "Email":"Correo",
     "Password":"Contraseña",
     "Your email address is unverified.":"Su dirección de correo electrónico no está verificada.",
