@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Tables\UsersTable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
 use ProtoneMedia\Splade\Facades\Toast;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('users.index',[
-            'users' => UsersTable::class
+        return view('users.index', [
+            'user' => UsersTable::class
         ]);
     }
 
@@ -39,12 +39,13 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'user' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'rol' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador'],
         ]);
 
-        $user = User::create([
+        // Crear un nuevo usuario
+        User::create([
             'dni' => $request->dni,
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -56,7 +57,8 @@ class UserController extends Controller
 
         Toast::title('Registro Exitoso')->autoDismiss(3);
 
-        redirect()->route('users.index');
+        // Redirigir al índice con un mensaje de éxito
+        return redirect()->route('users.index');
     }
 
     /**
@@ -70,24 +72,42 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'dni' => 'required|string|max:255|unique:users,dni,' . $user->id,
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'user' => 'required|string|max:255',
+            'rol' => 'required|string|max:255',
+        ]);
+
+        $user->update($validatedData);
+
+        Toast::title('Usuario actualizado exitosamente')
+            ->autoDismiss(3);
+
+        return to_route('users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        Toast::title('Usuario eliminado')
+            ->autoDismiss(3);
+
+        return to_route('users.index');
     }
 }

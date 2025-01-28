@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,12 +63,7 @@ Route::middleware('splade')->group(function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::get('/users', [UserController::class, 'index'])->name('users.index'); // Mostrar usuarios
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // Formulario de creación
-        Route::post('/users', [UserController::class, 'store'])->name('users.store'); // Guardar nuevo usuario
-        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-        Route::get('/users/{user}', [UserController::class, 'edit'])->name('users.edit');
-
+        Route::resource('users', UsersController::class);
     });
 
     require __DIR__.'/auth.php';

@@ -4,7 +4,7 @@
     </h2>
     <x-splade-form :default="$doctor" :action="route('doctors.update', $doctor)" method="patch" class="mt-6 space-y-6">
 
-        <x-splade-input id="dni" name="dni" type="text" :label="__('Cedula')" required />
+        <x-splade-input id="dni" name="dni" type="text" :label="__('Cedula')" required autofocus/>
         <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
         <x-splade-input id="last_name" name="last_name" type="text" :label="__('Apellido')" required />
         <x-splade-select name="specialties_id" :label="__('Especialidad')">

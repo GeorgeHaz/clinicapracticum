@@ -1,11 +1,11 @@
 <x-splade-modal>
-    <x-slot name="title">
+    <h2 class="text-lg font-medium text-gray-900">
         {{ __('Crear Paciente') }}
-    </x-slot>
+    </h2>
 
     <x-splade-form :action="route('patients.store')" class="mt-6 space-y-6">
         <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
-        <x-splade-input id="last_name" name="last_name" type="text" :label="__('Apellido')" required />
+        <x-splade-input id="last_name" name="last_name" type="text" :label="__('Apellido')" required autofocus/>
         <x-splade-input id="dni" name="dni" type="text" :label="__('Cedula')" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
         <x-splade-input id="birthdate" name="birthdate" type="date" :label="__('Fecha de nacimiento')" required />
         <x-splade-select id="gener" name="gener" :label="__('Genero')">
@@ -23,8 +23,8 @@
             <option value="A+">{{__('A+') }}</option>
             <option value="B-">{{__('B-') }}</option>
             <option value="B+">{{__('B+') }}</option>
-            <option value="AB-" >{{__('AB-') }}</option>
-            <option value="AB+" >{{__('AB+') }}</option>
+            <option value="AB-">{{__('AB-') }}</option>
+            <option value="AB+">{{__('AB+') }}</option>
         </x-splade-select>
         <x-splade-textarea id="allergies" name="allergies" :label="__('Alergias')" />
         <x-splade-textarea id="diseases" name="diseases" :label="__('Enfermedades')" />

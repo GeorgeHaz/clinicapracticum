@@ -5,6 +5,7 @@ namespace App\Tables;
 use App\Models\User;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
+use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 
 class UsersTable extends AbstractTable
@@ -61,7 +62,7 @@ class UsersTable extends AbstractTable
             ->perPageOptions([10,20,50])
             ->bulkAction(
                 label: 'Eliminar seleccion',
-                each: fn (Patients $patient) => $patient->delete(),
+                each: fn (User $user) => $user->delete(),
                 confirm: 'Esta seguro que desea eliminar?',
                 confirmButton: 'Si, Eliminar los seleccionados!',
                 cancelButton: 'No, No eliminarlos!',

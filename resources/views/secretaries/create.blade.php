@@ -1,7 +1,7 @@
 <x-splade-modal>
-    <x-slot name="title">
-        {{ __('Crear Secretaria') }}
-    </x-slot>
+    <h2 class="text-lg font-medium text-gray-900">
+        {{ __('Registrar Secretaria') }}
+    </h2>
 
     <x-splade-form :action="route('secretaries.store')" class="mt-6 space-y-6">
         <x-splade-input id="dni" name="dni" type="text" :label="__('Cedula')" required autofocus maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />

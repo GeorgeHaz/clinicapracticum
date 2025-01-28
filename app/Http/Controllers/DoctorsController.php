@@ -79,7 +79,7 @@ class DoctorsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'dni' => 'required|string|max:255|unique:patients,dni,' . $doctor->id,
+            'dni' => 'required|string|max:255|unique:doctors,dni,' . $doctor->id,
             'direction' => 'required',
             'telephone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
