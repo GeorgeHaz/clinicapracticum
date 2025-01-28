@@ -3,21 +3,23 @@
 use App\Models\Patients;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+uses(Tests\TestCase::class, RefreshDatabase::class);
+
 
 test('crear usuario desde paciente', function () {
 
-    $user = User::where('email', 'admin@admin.com')->first();
-
-    $this->actingAs($user);
-
+    // 1. Crear un paciente de prueba directamente
     $patient = Patients::create([
         'dni' => '0999999999',
         'name' => 'Truman',
         'last_name' => 'Defoe',
         'birthdate' => '2000-01-01',
-        'gender' => 'Masculino',
-        'address' => 'Street hollywoos',
-        'phone' => '0928372837',
+        'gener' => 'Masculino',
+        'direction' => 'Street hollywoos',
+        'telephone' => '0928372837',
         'email' => 'truman@gmail.com',
         'blood_group' => 'A-',
         'allergies' => 'ninguna',
@@ -31,7 +33,7 @@ test('crear usuario desde paciente', function () {
 
     // 3. Verificar que el usuario se creó en la base de datos
     $this->assertDatabaseHas('users', [
-        'email' => 'truman@gmail.com', // Usar el email del paciente
+        'email' => 'truman@gmail.com',
         'rol' => 'Paciente',
     ]);
 
