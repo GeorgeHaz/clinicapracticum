@@ -100,6 +100,6 @@ class HistoriesController extends Controller
         Toast::title('Historia eliminada correctamente')
             ->autoDismiss(3);
 
-        return redirect()->back();
+            return to_route('histories.index');
     }
 }

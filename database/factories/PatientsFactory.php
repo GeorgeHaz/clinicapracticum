@@ -19,9 +19,9 @@ class PatientsFactory extends Factory
     public function definition(): array
     {
         return [
+            'dni' => $this->faker->unique()->numerify('##########'), // Ejemplo de DNI único
             'name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'dni' => $this->faker->unique()->numerify('##########'), // Ejemplo de DNI único
             'birthdate' => $this->faker->date(),
             'gener' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'direction' => $this->faker->address,

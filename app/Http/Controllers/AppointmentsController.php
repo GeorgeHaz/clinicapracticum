@@ -97,7 +97,7 @@ class AppointmentsController extends Controller
         ]);
 
         $existingAppointment = Appointments::where('id', '!=', $appointment->id) // Excluir la cita actual
-            ->where('users_id', $validatedData['users_id'])
+            ->where('patients_id', $validatedData['patients_id'])
             ->where('appointments_date', $validatedData['appointments_date'])
             ->where(function ($query) use ($validatedData) {
                 $query->where(function ($q) use ($validatedData) {
@@ -132,6 +132,6 @@ class AppointmentsController extends Controller
         Toast::title('Cita eliminada correctamente')
             ->autoDismiss(3);
 
-        return redirect()->back();
+            return to_route('appointments.index');
     }
 }

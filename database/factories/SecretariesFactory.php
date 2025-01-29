@@ -2,16 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Specialties;
-use App\Models\Doctors;
+use App\Models\Secretaries;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Doctors>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Secretaries>
  */
-class DoctorsFactory extends Factory
+class SecretariesFactory extends Factory
 {
-    protected $model = Doctors::class;
+    protected $model = Secretaries::class;
     /**
      * Define the model's default state.
      *
@@ -23,10 +22,9 @@ class DoctorsFactory extends Factory
             'dni' => $this->faker->unique()->numerify('##########'),
             'name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'specialties_id' => Specialties::factory(),
             'direction' => $this->faker->address,
             'telephone' => $this->faker->phoneNumber,
+            'email' => $this->faker->unique()->safeEmail,
         ];
     }
 }

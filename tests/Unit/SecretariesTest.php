@@ -2,51 +2,44 @@
 
 namespace Tests\Unit;
 
-use App\Models\Patients;
+use App\Models\Secretaries;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class PatientsTest extends TestCase
+class SecretariesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_crear_usuario_desde_paciente()
+    public function test_crear_usuario_desde_secretaria()
     {
         // 1. Crear un paciente de prueba directamente
-        $patient = Patients::create([
+        $secretary = Secretaries::create([
             'dni' => '0999999999',
             'name' => 'Truman',
             'last_name' => 'Defoe',
-            'birthdate' => '2000-01-01',
-            'gener' => 'Masculino',
             'direction' => 'Street hollywoos',
             'telephone' => '0928372837',
             'email' => 'truman@gmail.com',
-            'blood_group' => 'A-',
-            'allergies' => 'ninguna',
-            'diseases' => 'ninguna',
-            'emergency_contact_name' => 'Lisa',
-            'emergency_contact_phone' => '0938293829',
         ]);
 
         // 2. Llamar al método que crea la cuenta de usuario
-        $patient->createUserAccount();
+        $secretary->createUserAccount();
 
         // 3. Verificar que el usuario se creó en la base de datos
         $this->assertDatabaseHas('users', [
             'email' => 'truman@gmail.com',
-            'rol' => 'Paciente',
+            'rol' => 'Secretaria',
         ]);
 
         // 4. Obtener el usuario creado
         $user = User::where('email', 'truman@gmail.com')->first();
 
         // 5. Verificar que la contraseña se ha hasheado correctamente
-        $this->assertTrue(Hash::check($patient->dni, $user->password));
+        $this->assertTrue(Hash::check($secretary->dni, $user->password));
 
         // 6. Verificar que el ID del usuario se ha guardado en el paciente
-        $this->assertEquals($user->id, $patient->user_id);
+        $this->assertEquals($user->id, $secretary->user_id);
     }
 }
