@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('dni')->unique();
             $table->string('name');
             $table->string('last_name');
-            $table->string('direction');
-            $table->string('telephone');
+            $table->string('address');
+            $table->string('phone');
             $table->string('email')->nullable();
-            
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

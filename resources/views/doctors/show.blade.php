@@ -30,14 +30,14 @@
                         <label class="block font-medium text-sm text-gray-700" for="telephone">
                             {{ __('Teléfono') }}
                         </label>
-                        <p class="mt-1 text-sm text-gray-600">{{ $doctor->telephone }}</p>
+                        <p class="mt-1 text-sm text-gray-600">{{ $doctor->phone }}</p>
                     </div>
 
                     <div>
                         <label class="block font-medium text-sm text-gray-700" for="direction">
                             {{ __('Dirección') }}
                         </label>
-                        <p class="mt-1 text-sm text-gray-600">{{ $doctor->direction }}</p>
+                        <p class="mt-1 text-sm text-gray-600">{{ $doctor->address }}</p>
                     </div>
 
                     <div>

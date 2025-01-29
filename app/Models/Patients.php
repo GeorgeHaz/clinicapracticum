@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patients extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'id',
@@ -16,16 +17,16 @@ class Patients extends Model
         'last_name',
         'dni',
         'birthdate',
-        'gener',
-        'direction',
-        'telephone',
+        'gender',
+        'address',
+        'phone',
         'email',
         'blood_group',
         'allergies',
         'diseases',
         'emergency_contact_name',
-        'emergency_contact_telephone',
-        'user_id'
+        'emergency_contact_phone',
+        'user_id',
     ];
 
     public function user()

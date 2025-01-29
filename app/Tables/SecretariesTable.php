@@ -52,7 +52,7 @@ class SecretariesTable extends AbstractTable
             ->column('id', sortable: true)
             ->column('name', 'Nombre', sortable: true)
             ->column('last_name', 'Apellido')
-            ->column('direction', 'Direccion')
+            ->column('address', 'Direccion')
             ->column('email', 'Correo')
             ->column('actions', 'Acciones')
             ->paginate()

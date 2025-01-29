@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,16 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',
-        'dni',
         'name',
-        'last_name',
         'user',
-        'direction',
-        'telephone',
-        'rol',
-        'specialties_id',
         'email',
         'password',
+        'rol',
     ];
 
     /**
@@ -55,7 +49,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function specialty()
+    /*public function specialty()
     {
         return $this->belongsTo(Specialties::class, 'specialties_id');
     }
@@ -63,5 +57,5 @@ class User extends Authenticatable
     public function specialties(): BelongsToMany
     {
         return $this->belongsToMany(Specialties::class, 'user_specialty', 'user_id', 'specialty_id');
-    }
+    }*/
 }

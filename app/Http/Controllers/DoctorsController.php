@@ -38,8 +38,8 @@ class DoctorsController extends Controller
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'dni' => 'required|string|unique:patients|max:255', // Asegura que la cédula sea única
-            'direction' => 'required',
-            'telephone' => 'required|max:255',
+            'address' => 'required',
+            'phone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
             'specialties_id' => 'required|exists:specialties,id',
         ]);
@@ -80,8 +80,8 @@ class DoctorsController extends Controller
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'dni' => 'required|string|max:255|unique:doctors,dni,' . $doctor->id,
-            'direction' => 'required',
-            'telephone' => 'required|max:255',
+            'address' => 'required',
+            'phone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
             'specialties_id' => 'required|exists:specialties,id',
         ]);

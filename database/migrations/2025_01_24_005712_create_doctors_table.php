@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->unsignedBigInteger('specialties_id');
-            $table->string('direction');
-            $table->string('telephone');
+            $table->string('address');
+            $table->string('phone');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('specialties_id')->references('id')->on('specialties');

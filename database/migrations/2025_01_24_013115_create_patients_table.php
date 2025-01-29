@@ -17,17 +17,18 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('dni')->unique();
             $table->date('birthdate');
-            $table->enum('gener', ['Masculino', 'Femenino']);
-            $table->string('direction');
-            $table->string('telephone');
+            $table->enum('gender', ['Masculino', 'Femenino']);
+            $table->string('address');
+            $table->string('phone');
             $table->string('email')->nullable();
             $table->string('blood_group')->nullable();
-            $table->string('allergies')->nullable();
-            $table->string('diseases')->nullable();
+            $table->text('allergies')->nullable();
+            $table->text('diseases')->nullable();
             $table->string('emergency_contact_name')->nullable();
-            $table->string('emergency_contact_telephone')->nullable();
+            $table->string('emergency_contact_phone')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });

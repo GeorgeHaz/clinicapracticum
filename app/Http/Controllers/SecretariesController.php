@@ -36,8 +36,8 @@ class SecretariesController extends Controller
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'dni' => 'required|string|unique:secretaries|max:255', // Asegura que la cédula sea única
-            'direction' => 'required',
-            'telephone' => 'required|max:255',
+            'address' => 'required',
+            'phone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
         ]);
 
@@ -75,9 +75,9 @@ class SecretariesController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'dni' => 'required|string|max:255|unique:patients,dni,' . $secretary->id,
-            'direction' => 'required',
-            'telephone' => 'required|max:255',
+            'dni' => 'required|string|max:255|unique:secretaries,dni,' . $secretary->id,
+            'address' => 'required',
+            'phone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
         ]);
 

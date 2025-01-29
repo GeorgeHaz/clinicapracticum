@@ -15,10 +15,10 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <p><strong>{{ __('Cédula') }}:</strong> {{ $secretary->dni }}</p>
-                        <p><strong>{{ __('Dirección') }}:</strong> {{ $secretary->direction }}</p>
+                        <p><strong>{{ __('Dirección') }}:</strong> {{ $secretary->address }}</p>
                     </div>
                     <div>
-                        <p><strong>{{ __('Teléfono') }}:</strong> {{ $secretary->telephone }}</p>
+                        <p><strong>{{ __('Teléfono') }}:</strong> {{ $secretary->phone }}</p>
                         <p><strong>{{ __('Correo Electrónico') }}:</strong> {{ $secretary->email ?? 'N/A' }}</p>
                     </div>
                 </div>

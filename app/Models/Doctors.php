@@ -17,8 +17,8 @@ class Doctors extends Model
         'last_name',
         'email',
         'specialties_id',
-        'direction',
-        'telephone',
+        'address',
+        'phone',
         'user_id'
     ];
 
@@ -31,12 +31,10 @@ class Doctors extends Model
     public function createUserAccount()
     {
         $user = User::create([
-            'dni' => $this->dni,
             'name' => $this->name,
-            'last_name' => $this->last_name,
             'email' => $this->email,
-            'direction'=>$this->direction,
-            'telephone'=>$this->telephone,
+            'address'=>$this->address,
+            'phone'=>$this->phone,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
             'rol' => 'Medico', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),

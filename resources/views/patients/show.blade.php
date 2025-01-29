@@ -16,9 +16,9 @@
                     <div>
                         <p><strong>{{ __('Cédula') }}:</strong> {{ $patient->dni }}</p>
                         <p><strong>{{ __('Fecha de Nacimiento') }}:</strong> {{ $patient->birthdate }}</p>
-                        <p><strong>{{ __('Género') }}:</strong> {{ $patient->gener }}</p>
-                        <p><strong>{{ __('Dirección') }}:</strong> {{ $patient->direction }}</p>
-                        <p><strong>{{ __('Teléfono') }}:</strong> {{ $patient->telephone }}</p>
+                        <p><strong>{{ __('Género') }}:</strong> {{ $patient->gender }}</p>
+                        <p><strong>{{ __('Dirección') }}:</strong> {{ $patient->address }}</p>
+                        <p><strong>{{ __('Teléfono') }}:</strong> {{ $patient->phone }}</p>
                         <p><strong>{{ __('Correo Electrónico') }}:</strong> {{ $patient->email ?? 'N/A' }}</p>
                         <p><strong>{{ __('Grupo Sanguíneo') }}:</strong> {{ $patient->blood_group ?? 'N/A' }}</p>
                     </div>

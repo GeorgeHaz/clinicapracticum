@@ -50,9 +50,7 @@ class UsersTable extends AbstractTable
     {
         $table
             ->withGlobalSearch(columns: ['dni','name','last_name'])
-            ->column('dni','Cedula', sortable: true)
             ->column('name','Nombre', sortable: true)
-            ->column('last_name','Apellido')
             ->column('user','Usuario')
             ->column('rol','Rol')
             ->column('email','Correo')

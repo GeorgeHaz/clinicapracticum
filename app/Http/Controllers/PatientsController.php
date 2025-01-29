@@ -37,15 +37,15 @@ class PatientsController extends Controller
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'birthdate' => 'required|date',
-            'gener' => 'required|in:Masculino,Femenino,Otro',
-            'direction' => 'required',
-            'telephone' => 'required|max:255',
+            'gender' => 'required|in:Masculino,Femenino,Otro',
+            'address' => 'required',
+            'phone' => 'required|max:255',
             'email' => 'required|email:rfc,dns',
             'blood_group' => 'nullable|max:255',
             'allergies' => 'nullable',
             'diseases' => 'nullable',
             'emergency_contact_name' => 'nullable|max:255',
-            'emergency_contact_telephone' => 'nullable|max:255',
+            'emergency_contact_phone' => 'nullable|max:255',
         ]);
 
         $patient = Patients::create($validatedData);
@@ -84,15 +84,15 @@ class PatientsController extends Controller
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'birthdate' => 'required|date',
-            'gener' => 'required|in:Masculino,Femenino,Otro',
-            'direction' => 'required',
-            'telephone' => 'required|max:255',
+            'gender' => 'required|in:Masculino,Femenino,Otro',
+            'address' => 'required',
+            'phone' => 'required|max:255',
             'email' => 'required|email:rfc,dns',
             'blood_group' => 'nullable|max:255',
             'allergies' => 'nullable',
             'diseases' => 'nullable',
             'emergency_contact_name' => 'nullable|max:255',
-            'emergency_contact_telephone' => 'nullable|max:255',
+            'emergency_contact_phone' => 'nullable|max:255',
         ]);
 
         $patient->update($validatedData);

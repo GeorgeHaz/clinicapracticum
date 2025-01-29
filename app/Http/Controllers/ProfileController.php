@@ -45,7 +45,7 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
-        Toast::title('Paciente creado exitosamente')
+        Toast::title('Usuario Actualizado')
             ->autoDismiss(3);
         return Redirect::route('profile.edit');
     }

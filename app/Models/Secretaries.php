@@ -15,8 +15,8 @@ class Secretaries extends Model
         'dni',
         'name',
         'last_name',
-        'direction',
-        'telephone',
+        'address',
+        'phone',
         'email',
         'user_id'
     ];
@@ -30,9 +30,7 @@ class Secretaries extends Model
     public function createUserAccount()
     {
         $user = User::create([
-            'dni' => $this->dni,
             'name' => $this->name,
-            'last_name' => $this->last_name,
             'email' => $this->email,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
             'rol' => 'Secretaria', // Rol por defecto para los pacientes

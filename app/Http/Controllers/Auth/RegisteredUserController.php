@@ -33,30 +33,27 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dni' => ['required', 'string', 'max:10'],
             'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
             'user' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'rol' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador'],
         ]);
 
         $user = User::create([
-            'dni' => $request->dni,
             'name' => $request->name,
-            'last_name' => $request->last_name,
             'user' => $request->user,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'rol' => $request->rol,
+            'rol' => 'Invitado',
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        Toast::title('Registro Exitoso')->autoDismiss(3);
+        Toast::title('Registro Exitoso')
+            ->message('Ahora eres un usuario Invitado. Un administrador revisará tu cuenta.')
+            ->autoDismiss(3);
 
         return redirect('/dashboard');
     }
