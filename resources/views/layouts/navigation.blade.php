@@ -34,7 +34,10 @@
                                             {{ __('Main Page') }}
                                         </x-dropdown-link>
                                         <x-dropdown-link :href="route('users.index')">
-                                            {{ __('User') }}
+                                            {{ __('Users') }}
+                                        </x-dropdown-link>
+                                        <x-dropdown-link :href="route('users.guest')">
+                                            {{ __('Guests') }}
                                         </x-dropdown-link>
                                     </x-slot>
                             </x-dropdown>

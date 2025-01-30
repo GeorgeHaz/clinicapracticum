@@ -7,7 +7,6 @@ use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,7 +63,10 @@ Route::middleware('splade')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::resource('users', UsersController::class);
+        Route::get('/users/guests', [UsersController::class, 'guests'])->name('users.guests');
+        Route::get('/users/{user}/promote', [UsersController::class, 'promote'])->name('users.promote');
+        Route::post('/users/{user}/promote', [UsersController::class, 'promoteStore'])->name('users.promoteStore');
     });
 
-    require __DIR__.'/auth.php';
+    require __DIR__ . '/auth.php';
 });

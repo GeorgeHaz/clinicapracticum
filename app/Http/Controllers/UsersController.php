@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patients;
 use App\Models\User;
 use App\Tables\UsersTable;
 use Illuminate\Http\Request;
@@ -19,6 +20,17 @@ class UsersController extends Controller
         return view('users.index', [
             'user' => UsersTable::class
         ]);
+    }
+
+    public function guests()
+    {
+        $invitados = User::where('rol', 'Invitado')->paginate(10); // Obtiene los usuarios invitados y los pagina
+        return view('users.guests', compact('guests'));
+    }
+
+    public function promote(User $user)
+    {
+        return view('users.promote', compact('user'));
     }
 
     /**
@@ -41,7 +53,7 @@ class UsersController extends Controller
             'user' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'rol' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador'],
+            'rol' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador,Invitado'],
         ]);
 
         // Crear un nuevo usuario
@@ -59,6 +71,28 @@ class UsersController extends Controller
 
         // Redirigir al índice con un mensaje de éxito
         return redirect()->route('users.index');
+    }
+
+    public function promoteStore(Request $request, User $user)
+    {
+        // Actualizar el rol del usuario a 'Paciente'
+        $user->update(['rol' => 'Paciente']);
+
+        // Crear un nuevo registro en la tabla de pacientes
+        $patient = Patients::create([
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'last_name' => $user->last_name,
+            'dni' => $user->dni, // Suponiendo que los pacientes también tienen un DNI
+            'email' => $user->email,
+            'phone' => $user->telephone, // Suponiendo que estos campos existen en la tabla de usuarios
+            'address' => $user->direction, // Suponiendo que estos campos existen en la tabla de usuarios
+        ]);
+
+        Toast::title('Usuario promovido a Paciente exitosamente')
+            ->autoDismiss(5);
+
+        return to_route('patients.index');
     }
 
     /**
