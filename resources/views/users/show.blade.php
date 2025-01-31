@@ -14,9 +14,8 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <p><strong>{{ __('Cédula') }}:</strong> {{ $user->dni }}</p>
                         <p><strong>{{ __('User') }}:</strong> {{ $user->user }}</p>
-                        <p><strong>{{ __('Rol') }}:</strong> {{ $user->rol }}</p>
+                        <p><strong>{{ __('Rol') }}:</strong> {{ $user->role }}</p>
                     </div>
                     <div>
                     <p><strong>{{ __('Correo Electrónico') }}:</strong> {{ $user->email ?? 'N/A' }}</p>

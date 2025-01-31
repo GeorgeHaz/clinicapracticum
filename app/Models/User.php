@@ -23,7 +23,7 @@ class User extends Authenticatable
         'user',
         'email',
         'password',
-        'rol',
+        'role',
     ];
 
     /**
@@ -47,6 +47,26 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'Administrador';
+    }
+
+    public function isDoctor()
+    {
+        return $this->role === 'Medico';
+    }
+
+    public function isSecretary()
+    {
+        return $this->role === 'Secretaria';
+    }
+
+    public function isGuest()
+    {
+        return $this->role === 'Invitado';
     }
 
     /*public function specialty()

@@ -36,7 +36,7 @@ class Doctors extends Model
             'address'=>$this->address,
             'phone'=>$this->phone,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
-            'rol' => 'Medico', // Rol por defecto para los pacientes
+            'role' => 'Medico', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),
         ]);
 

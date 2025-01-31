@@ -3,7 +3,7 @@
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-2xl text-gray-800 py-2 leading-tight">
-                {{ Auth::user()->rol }}
+                {{ Auth::user()->role }}
             </h2>
 
             <div class="flex justify-between h-16">
@@ -35,9 +35,6 @@
                                         </x-dropdown-link>
                                         <x-dropdown-link :href="route('users.index')">
                                             {{ __('Users') }}
-                                        </x-dropdown-link>
-                                        <x-dropdown-link :href="route('users.guest')">
-                                            {{ __('Guests') }}
                                         </x-dropdown-link>
                                     </x-slot>
                             </x-dropdown>

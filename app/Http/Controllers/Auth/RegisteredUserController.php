@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         Toast::title('Registro Exitoso')
-            ->message('Ahora eres un usuario Invitado. Un administrador revisará tu cuenta.')
+            ->message('Ahora eres un usuario Invitado. Espera por la aprobacion.')
             ->autoDismiss(3);
 
         return redirect('/dashboard');

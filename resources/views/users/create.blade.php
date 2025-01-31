@@ -3,12 +3,10 @@
         {{ __('Crear Usuario') }}
     </h2>
     <x-splade-form :action="route('users.store')" class="space-y-4">
-    <x-splade-input id="dni" type="text" name="dni" :label="__('Cedula')" required autofocus maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
             <x-splade-input id="name" type="text" name="name" :label="__('Name')" required autofocus />
-            <x-splade-input id="last_name" type="text" name="last_name" :label="__('Apellido')" required autofocus />
             <x-splade-input id="user" type="text" name="user" :label="__('Usuario')" required autofocus />
             <x-splade-input id="email" type="email" name="email" :label="__('Correo')" required />
-            <x-splade-select id="rol" type="text" name="rol" :label="__('Rol')" required autofocus>
+            <x-splade-select id="role" type="text" name="role" :label="__('Rol')" required autofocus>
                 <option value="Medico">Medico</option>
                 <option value="Secretaria">Secretaria</option>
                 <option value="Administrador">Administrador</option>

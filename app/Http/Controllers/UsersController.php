@@ -17,20 +17,10 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $users = User::where('role', 'Invitado')->get();
         return view('users.index', [
             'user' => UsersTable::class
         ]);
-    }
-
-    public function guests()
-    {
-        $invitados = User::where('rol', 'Invitado')->paginate(10); // Obtiene los usuarios invitados y los pagina
-        return view('users.guests', compact('guests'));
-    }
-
-    public function promote(User $user)
-    {
-        return view('users.promote', compact('user'));
     }
 
     /**
@@ -47,24 +37,20 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dni' => ['required', 'string', 'max:10'],
             'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
             'user' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'rol' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador,Invitado'],
+            'role' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador,Invitado'],
         ]);
 
         // Crear un nuevo usuario
         User::create([
-            'dni' => $request->dni,
             'name' => $request->name,
-            'last_name' => $request->last_name,
             'user' => $request->user,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'rol' => $request->rol,
+            'role' => $request->role,
         ]);
 
         Toast::title('Registro Exitoso')->autoDismiss(3);
@@ -73,26 +59,10 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function promoteStore(Request $request, User $user)
+    public function approve(User $user)
     {
-        // Actualizar el rol del usuario a 'Paciente'
-        $user->update(['rol' => 'Paciente']);
-
-        // Crear un nuevo registro en la tabla de pacientes
-        $patient = Patients::create([
-            'user_id' => $user->id,
-            'name' => $user->name,
-            'last_name' => $user->last_name,
-            'dni' => $user->dni, // Suponiendo que los pacientes también tienen un DNI
-            'email' => $user->email,
-            'phone' => $user->telephone, // Suponiendo que estos campos existen en la tabla de usuarios
-            'address' => $user->direction, // Suponiendo que estos campos existen en la tabla de usuarios
-        ]);
-
-        Toast::title('Usuario promovido a Paciente exitosamente')
-            ->autoDismiss(5);
-
-        return to_route('patients.index');
+        $user->update(['role' => 'Paciente']); // Cambiar el rol de "invitado" a "paciente"
+        return redirect()->back()->with('success', 'Usuario aprobado.');
     }
 
     /**
@@ -117,11 +87,9 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
-            'dni' => 'required|string|max:255|unique:users,dni,' . $user->id,
             'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
             'user' => 'required|string|max:255',
-            'rol' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
         ]);
 
         $user->update($validatedData);
