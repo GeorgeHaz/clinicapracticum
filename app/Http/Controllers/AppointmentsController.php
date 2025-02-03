@@ -132,6 +132,6 @@ class AppointmentsController extends Controller
         Toast::title('Cita eliminada correctamente')
             ->autoDismiss(3);
 
-            return to_route('appointments.index');
+        return to_route('appointments.index');
     }
 }

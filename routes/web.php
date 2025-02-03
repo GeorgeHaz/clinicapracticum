@@ -37,7 +37,7 @@ Route::middleware('splade')->group(function () {
 
     Route::get('/', function () {
         return view('welcome');
-    });
+    });   
 
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', function () {
