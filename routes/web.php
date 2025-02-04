@@ -8,7 +8,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\UsersController;
-use App\Models\Doctors;
 use Illuminate\Support\Facades\Route;
 
 /*
