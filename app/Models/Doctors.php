@@ -32,13 +32,12 @@ class Doctors extends Model
     {
         $user = User::create([
             'name' => $this->name,
-            'email' => $this->email,
-            'address'=>$this->address,
-            'phone'=>$this->phone,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
+            'email' => $this->email,
             'role' => 'Medico', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),
         ]);
+        $user->asignRole('Medico');
 
         $this->user_id = $user->id;
         $this->save();

@@ -17,8 +17,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', 'Invitado')->get();
-        return view('users.index', [
+        
+        return view('users.index',[
             'user' => UsersTable::class
         ]);
     }
@@ -41,17 +41,17 @@ class UsersController extends Controller
             'user' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string', 'in:Paciente,Medico,Secretaria,Administrador,Invitado'],
+            'role' => ['required','exists:roles,name'],
         ]);
 
         // Crear un nuevo usuario
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'user' => $request->user,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
         ]);
+        $user->assignRole($request->role);
 
         Toast::title('Registro Exitoso')->autoDismiss(3);
 
@@ -89,10 +89,11 @@ class UsersController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'user' => 'required|string|max:255',
-            'role' => 'required|string|max:255',
+            'role' => 'required|exists:roles,name',
         ]);
 
         $user->update($validatedData);
+        $user->syncRoles($request->role);
 
         Toast::title('Usuario actualizado exitosamente')
             ->autoDismiss(3);

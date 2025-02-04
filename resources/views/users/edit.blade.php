@@ -6,13 +6,7 @@
 
         <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
         <x-splade-input id="user" name="user" type="text" :label="__('Usuario')" required />
-        <x-splade-select id="role" type="text" name="role" :label="__('Rol')" required autofocus>
-            <option value="Medico">Medico</option>
-            <option value="Secretaria">Secretaria</option>
-            <option value="Administrador">Administrador</option>
-            <option value="Paciente">Paciente</option>
-            <option value="Invitado">Invitado</option>
-        </x-splade-select>
+        <x-splade-select id="role" type="text" name="role" :label="__('Rol')" :options="Spatie\Permission\Models\Role::all()->pluck('name', 'name')" :value="old('role', $user->roles->first()->name)" required />
 
         <div class="flex items-center justify-end">
             <x-splade-submit class="ml-4" :label="__('Actualizar')" />

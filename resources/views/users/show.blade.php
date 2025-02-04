@@ -4,18 +4,17 @@
             {{ __('Detalles del Usuario') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <h3 class="text-lg font-medium text-gray-900 mb-2">
-                    {{ $user->name }} {{ $user->last_name }}
+                    {{ $user->name }}
                 </h3>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <p><strong>{{ __('User') }}:</strong> {{ $user->user }}</p>
-                        <p><strong>{{ __('Rol') }}:</strong> {{ $user->role }}</p>
+                        <p><strong>{{ __('Rol') }}:</strong> {{ $user->roles->first()->name }}</p>
                     </div>
                     <div>
                     <p><strong>{{ __('Correo Electrónico') }}:</strong> {{ $user->email ?? 'N/A' }}</p>

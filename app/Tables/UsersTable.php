@@ -37,10 +37,7 @@ class UsersTable extends AbstractTable
      */
     public function for()
     {
-        $user = auth()->user();
-        return $user->role === 'Administrador'
-            ?User::query()
-            :User::where('role', 'Invitado');
+        return User::query();
     }
 
     /**
@@ -55,8 +52,8 @@ class UsersTable extends AbstractTable
             ->withGlobalSearch(columns: ['dni','name','last_name'])
             ->column('name','Nombre', sortable: true)
             ->column('user','Usuario')
-            ->column('role','Rol')
             ->column('email','Correo')
+            ->column('roles.name','Rol')
             ->column('actions', 'Acciones')
             ->paginate()
             ->export('Exportar Usuarios','listado_usuarios.xlsx')

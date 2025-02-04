@@ -36,6 +36,7 @@ class Secretaries extends Model
             'role' => 'Secretaria', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),
         ]);
+        $user->assignRole('Secretaria');
 
         $this->user_id = $user->id;
         $this->save();

@@ -38,16 +38,14 @@ class Patients extends Model
     public function createUserAccount()
     {
         $user = User::create([
-            'dni' => $this->dni,
             'name' => $this->name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'direction'=>$this->direction,
-            'telephone'=>$this->telephone,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
-            'rol' => 'Paciente', // Rol por defecto para los pacientes
+            'email' => $this->email,
+            'role' => 'Medico', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),
         ]);
+
+        $user->asignRole('Paciente');
 
         $this->user_id = $user->id;
         $this->save();

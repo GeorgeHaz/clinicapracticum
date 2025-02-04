@@ -46,10 +46,7 @@ Route::middleware('splade')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
 
-    //Rol Administrador
-    Route::middleware(['auth','role:Administrador'])->group(function () {
         Route::resource('users', UsersController::class);
         Route::resource('patients', PatientsController::class);
         Route::resource('doctors', DoctorsController::class);
@@ -58,40 +55,6 @@ Route::middleware('splade')->group(function () {
         Route::resource('appointments', AppointmentsController::class);
         Route::resource('histories', HistoriesController::class);
     });
-
-    //Rol Secretaria
-    Route::middleware(['auth','role:Secretaria,Administrador'])->group(function () {
-        Route::resource('users', UsersController::class)->only([
-            'index', 'show','edit'
-        ]);
-        Route::resource('patients', PatientsController::class)->only([
-            'index', 'show','edit'
-        ]);
-        Route::resource('appointments', AppointmentsController::class)->only([
-            'index', 'create', 'show','edit'
-        ]);
-    });
-
-    //Rol Medico
-    Route::middleware(['auth','role:Medico,Administrador,Doctor'])->group(function () {
-        Route::resource('patients', PatientsController::class)->only([
-            'index', 'show','edit'
-        ]);
-        Route::resource('histories', HistoriesController::class)->only([
-            'index', 'create', 'show','edit'
-        ]);
-    });
-
-    //Rol Paciente
-    Route::middleware(['auth','role:Paciente,Administrador,Secretaria'])->group(function () {
-        Route::resource('appointments', AppointmentsController::class)->only([
-            'index', 'show','edit'
-        ]);
-        Route::resource('histories', HistoriesController::class)->only([
-            'index', 'create', 'show','edit'
-        ]);
-    });
-
 
     require __DIR__ . '/auth.php';
 });
