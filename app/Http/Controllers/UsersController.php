@@ -92,7 +92,11 @@ class UsersController extends Controller
             'role' => 'required|exists:roles,name',
         ]);
 
-        $user->update($validatedData);
+        $user->update([
+            'name' => $validatedData['name'],
+            'user' => $validatedData['user'],
+        ]);
+        
         $user->syncRoles($request->role);
 
         Toast::title('Usuario actualizado exitosamente')

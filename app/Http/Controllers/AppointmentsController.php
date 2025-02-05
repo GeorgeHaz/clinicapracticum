@@ -27,7 +27,7 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        if (!auth()->user()->can('create appointment')) {
+        if (!auth()->user()->can('appointments.create')) {
             abort(403, 'Acceso no autorizado.');
         }
         $patients = Patients::all();
