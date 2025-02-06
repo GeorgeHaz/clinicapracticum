@@ -9,6 +9,7 @@ use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Dusk\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::middleware('splade')->group(function () {
 
     Route::get('/', function () {
         return view('welcome');
-    });   
+    });
 
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', function () {
@@ -54,6 +55,10 @@ Route::middleware('splade')->group(function () {
         Route::resource('specialties', SpecialtiesController::class);
         Route::resource('appointments', AppointmentsController::class);
         Route::resource('histories', HistoriesController::class);
+
+        //Rutas adicionales
+        Route::get('/users/{user}/promote', [UsersController::class, 'promote'])->name('users.promote');
+        Route::post('/users/{user}/promote', [UsersController::class, 'promoteStore'])->name('users.promoteStore');
     });
 
     require __DIR__ . '/auth.php';

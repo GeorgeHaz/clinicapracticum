@@ -14,6 +14,7 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $entities = ['appointments','patients','users','specialties','doctors','secretaries','histories'];

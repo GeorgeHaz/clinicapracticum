@@ -4,18 +4,17 @@
     </h2>
 
     <x-splade-form :action="route('patients.store')" class="mt-6 space-y-6">
-        <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
-        <x-splade-input id="last_name" name="last_name" type="text" :label="__('Apellido')" required autofocus/>
         <x-splade-input id="dni" name="dni" type="text" :label="__('Cedula')" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
+        <x-splade-input id="last_name" name="last_name" type="text" :label="__('Apellido')" required autofocus />
         <x-splade-input id="birthdate" name="birthdate" type="date" :label="__('Fecha de nacimiento')" required />
         <x-splade-select id="gender" name="gender" :label="__('Genero')">
             <option value="Masculino">{{ __('Masculino') }}</option>
             <option value="Femenino">{{ __('Femenino') }}</option>
-            <option value="Otro">{{ __('Otro') }}</option>
         </x-splade-select>
         <x-splade-input id="address" name="address" type="text" :label="__('Direccion')" required />
         <x-splade-input id="phone" name="phone" type="text" :label="__('Telefono')" required />
-        <x-splade-input id="email" name="email" type="email" :label="__('Correo')" required/>
+        <x-splade-input id="email" name="email" type="email" :label="__('Correo')" required />
         <x-splade-select id="blood_group" name="blood_group" :label="__('Tipo de sangre')">
             <option value="O-">{{__('O-') }}</option>
             <option value="O+">{{__('O+') }}</option>

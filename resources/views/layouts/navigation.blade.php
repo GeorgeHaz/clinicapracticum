@@ -3,7 +3,7 @@
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-2xl text-gray-800 py-2 leading-tight">
-            {{ auth()->user()->roles->first()->name }}
+            {{ auth()->user()->roles->first()?->name ?? 'Invitado' }}
             </h2>
 
             <div class="flex justify-between h-16">

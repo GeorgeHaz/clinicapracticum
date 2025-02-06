@@ -22,9 +22,16 @@
                             <Link modal href="{{ route('users.show', $user->id) }}" class="bg-yellow-500 hover:bg-yellow-700 flex px-4 py-2 rounded mr-2" title="Ver">
                             <x-show-icon class="w-5 h-5" />
                             </Link>
-                            <Link modal href="{{ route('users.edit', $user->id) }}" class="bg-blue-500 hover:bg-blue-700 flex px-4 py-2 rounded" title="Editar">
+                            <Link modal href="{{ route('users.edit', $user->id) }}" class="bg-blue-500 hover:bg-blue-700 flex px-4 py-2 rounded mr-2" title="Editar">
                             <x-pencil-icon class="w-5 h-5" />
                             </Link>
+                            @if(auth()->user()->hasAnyRole(['Secretaria', 'Administrador']))
+                            @if($user->hasRole('Invitado'))
+                            <Link modal href="{{ route('users.promote', $user->id) }}" class="bg-green-500 hover:bg-green-700 flex px-4 py-2 rounded" title="Aprobar">
+                            <x-approve-icon class="w-5 h-5" />
+                            </Link>
+                            @endif
+                            @endif
                             <x-splade-form action="{{ route('users.destroy', $user) }}" class="flex px-2" title="Eliminar" method="DELETE" confirm>
                                 <x-splade-submit danger>
                                     <x-trash-icon class="w-5 h-5" />

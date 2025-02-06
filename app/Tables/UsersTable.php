@@ -37,7 +37,18 @@ class UsersTable extends AbstractTable
      */
     public function for()
     {
-        return User::query();
+
+        $user = auth()->user();
+
+        if ($user->hasRole('Administrador')) {
+            return User::with('roles'); // Todos los usuarios para el administrador
+        } elseif ($user->hasRole('Secretaria')) {
+            return User::with('roles')->whereHas('roles', function ($query) {
+                $query->where('name', 'Invitado'); // Solo invitados para la secretaria
+            });
+        } else {
+            return User::where('id', $user->id); // Otros usuarios solo se ven a sí mismos
+        }
     }
 
     /**
