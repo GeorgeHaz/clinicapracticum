@@ -33,7 +33,6 @@ class Secretaries extends Model
             'name' => $this->name,
             'email' => $this->email,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
-            'role' => 'Secretaria', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),
         ]);
         $user->assignRole('Secretaria');
