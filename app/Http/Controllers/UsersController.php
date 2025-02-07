@@ -159,8 +159,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::pluck('name', 'name')->all(); // Obte
-        return view('users.edit', compact('user','roles'));
+        //$roles = Role::pluck('name', 'name')->all(); // Obte
+        return view('users.edit', compact('user'/*,'roles'*/));
     }
 
     /**
@@ -171,7 +171,7 @@ class UsersController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'user' => 'required|string|max:255',
-            'role' => 'required|exists:roles,name',
+            //'role' => 'required|exists:roles,name',
         ]);
 
         $user->update([
@@ -179,7 +179,7 @@ class UsersController extends Controller
             'user' => $validatedData['user'],
         ]);
         
-        $user->syncRoles($request->role);
+        //$user->syncRoles($request->role);
 
         Toast::title('Usuario actualizado exitosamente')
             ->autoDismiss(3);

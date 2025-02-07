@@ -6,13 +6,6 @@
 
         <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
         <x-splade-input id="user" name="user" type="text" :label="__('Usuario')" required />
-        <x-splade-select 
-            id="role" 
-            name="role" 
-            :label="__('Rol')" 
-            :options="$roles" 
-            required 
-        />
         <div class="flex items-center justify-end">
             <x-splade-submit class="ml-4" :label="__('Actualizar')" />
         </div>

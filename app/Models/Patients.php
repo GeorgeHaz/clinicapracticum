@@ -41,11 +41,10 @@ class Patients extends Model
             'name' => $this->name,
             'user' => $this->dni, // Puedes usar otro campo como nombre de usuario si lo prefieres
             'email' => $this->email,
-            'role' => 'Medico', // Rol por defecto para los pacientes
             'password' => Hash::make($this->dni),
         ]);
 
-        $user->asignRole('Paciente');
+        $user->assignRole('Paciente');
 
         $this->user_id = $user->id;
         $this->save();

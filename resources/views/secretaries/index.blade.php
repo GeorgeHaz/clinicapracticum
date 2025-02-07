@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" flex items-center justify-end">
                 <Link modal href="{{ route('secretaries.create') }}" title="Crear Secretaria" class="inline-flex rounded-md shadow-sm bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 mb-3 focus:outline-none focus:shadow-outline">
-                Crear Secretaria
+                Registrar Secretaria
                 </Link>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
