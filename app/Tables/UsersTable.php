@@ -60,10 +60,11 @@ class UsersTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->withGlobalSearch(columns: ['dni','name','last_name'])
-            ->column('name','Nombre', sortable: true)
+            ->withGlobalSearch(columns: ['name','email'])
+            ->column('id')
+            ->column('name','Nombre', sortable: true, searchable:true, canBeHidden: false)
             ->column('user','Usuario')
-            ->column('email','Correo')
+            ->column('email','Correo', searchable:true, canBeHidden: false)
             ->column('roles.name','Rol')
             ->column('actions', 'Acciones')
             ->paginate()

@@ -48,13 +48,12 @@ class DoctorsTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->withGlobalSearch(columns: ['id'])
-            ->column('id', sortable: true)
-            ->column('name', 'Nombre', sortable: true)
+            ->withGlobalSearch(columns: ['name'])
+            ->defaultSort('name')
+            ->column('name', 'Nombre', searchable: true, sortable: true, canBeHidden: false)
             ->column('last_name', 'Apellido')
             ->column('email', 'Correo')
             ->column('specialty.name', 'Especialidad')
-            ->column('address', 'Direccion')
             ->column('phone', 'Telefono')
             ->column('actions', 'Acciones')
             ->paginate()

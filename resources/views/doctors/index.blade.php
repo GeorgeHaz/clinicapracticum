@@ -14,7 +14,7 @@
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-splade-table :for="$doctors">
+                    <x-splade-table :for="$doctors" search-debounce="700">
                         <x-slot:empty-state>
                             <p>No hay Medicos Registrados! </p>
                         </x-slot:empty-state>

@@ -48,9 +48,9 @@ class SecretariesTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->withGlobalSearch(columns: ['id','name'])
-            ->column('id', sortable: true)
-            ->column('name', 'Nombre', sortable: true)
+            ->withGlobalSearch(columns: ['name'])
+            ->defaultSort('name')
+            ->column('name', 'Nombre', sortable: true, canBeHidden: false, searchable:true)
             ->column('last_name', 'Apellido')
             ->column('address', 'Direccion')
             ->column('email', 'Correo')

@@ -5,12 +5,11 @@ use App\Http\Controllers\DoctorsController;
 use App\Http\Controllers\HistoriesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\SecretariesController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Dusk\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +54,7 @@ Route::middleware('splade')->group(function () {
         Route::resource('specialties', SpecialtiesController::class);
         Route::resource('appointments', AppointmentsController::class);
         Route::resource('histories', HistoriesController::class);
+        Route::resource('schedules', SchedulesController::class);
 
         //Rutas adicionales
         Route::get('/users/{user}/promote', [UsersController::class, 'promote'])->name('users.promote');
