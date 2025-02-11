@@ -23,7 +23,7 @@ class StoreScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'doctors_id' => 'required|exists:doctors,id',
+            'doctor_id' => 'required|exists:doctors,id',
             'day_of_week' => [
                 'required',
                 Rule::in(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'])

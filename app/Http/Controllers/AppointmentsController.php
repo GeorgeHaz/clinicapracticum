@@ -43,9 +43,9 @@ class AppointmentsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'patients_id' => 'required|exists:patients,id',
-            'doctors_id' => 'required|exists:doctors,id',
-            'specialties_id' => 'required|exists:specialties,id',
+            'patient_id' => 'required|exists:patients,id',
+            'doctor_id' => 'required|exists:doctors,id',
+            'specialty_id' => 'required|exists:specialties,id',
             'appointments_date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
@@ -89,9 +89,9 @@ class AppointmentsController extends Controller
     public function update(Request $request, Appointments $appointment)
     {
         $validatedData = $request->validate([
-            'patients_id' => 'required|exists:patients,id',
-            'doctors_id' => 'required|exists:doctors,id',
-            'specialties_id' => 'required|exists:specialties,id',
+            'patient_id' => 'required|exists:patients,id',
+            'doctor_id' => 'required|exists:doctors,id',
+            'specialty_id' => 'required|exists:specialties,id',
             'appointments_date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
@@ -100,7 +100,7 @@ class AppointmentsController extends Controller
         ]);
 
         $existingAppointment = Appointments::where('id', '!=', $appointment->id) // Excluir la cita actual
-            ->where('patients_id', $validatedData['patients_id'])
+            ->where('patient_id', $validatedData['patient_id'])
             ->where('appointments_date', $validatedData['appointments_date'])
             ->where(function ($query) use ($validatedData) {
                 $query->where(function ($q) use ($validatedData) {

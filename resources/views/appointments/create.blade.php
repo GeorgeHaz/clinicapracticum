@@ -6,21 +6,21 @@
     <x-splade-form :action="route('appointments.store')">
         <div class="grid grid-cols-2 gap-4 mb-4">
 
-            <x-splade-select name="patients_id" :label="__('Paciente')">
+            <x-splade-select name="patient_id" :label="__('Paciente')">
                 <option value="" disabled selected>{{ __('Seleccione un paciente') }}</option>
                 @foreach ($patients as $patient)
                 <option value="{{ $patient->id }}">{{ $patient->name }} {{ $patient->last_name }}</option>
                 @endforeach
             </x-splade-select>
 
-            <x-splade-select name="specialties_id" :label="__('Especialidad')">
+            <x-splade-select name="specialty_id" :label="__('Especialidad')">
                 <option value="" disabled selected>{{ __('Seleccione una especialidad') }}</option>
                 @foreach ($specialties as $specialty)
                 <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>
                 @endforeach
             </x-splade-select>
 
-            <x-splade-select name="doctors_id" :label="__('Médico')">
+            <x-splade-select name="doctor_id" :label="__('Médico')">
                 <option value="" disabled selected>{{ __('Seleccione un médico') }}</option>
                 @foreach ($doctors as $doctor)
                 <option value="{{ $doctor->id }}">{{ $doctor->name }} {{ $doctor->last_name }} ({{ $doctor->specialty->name }})</option>

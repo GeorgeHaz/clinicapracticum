@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('patients_id');
-            $table->unsignedBigInteger('doctors_id');
-            $table->unsignedBigInteger('specialties_id')->nullable();
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('specialty_id')->nullable();
             $table->date('appointments_date');
             $table->time('start_time');
             $table->time('end_time');
@@ -24,9 +24,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('patients_id')->references('id')->on('patients');
-            $table->foreign('doctors_id')->references('id')->on('doctors');
-            $table->foreign('specialties_id')->references('id')->on('specialties');
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('specialty_id')->references('id')->on('specialties');
         });
     }
 

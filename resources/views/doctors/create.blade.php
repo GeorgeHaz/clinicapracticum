@@ -8,7 +8,7 @@
             <x-splade-input id="dni" name="dni" type="text" :label="__('Cedula')" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" autofocus />
             <x-splade-input id="name" name="name" type="text" :label="__('Nombre')" required autofocus />
             <x-splade-input id="last_name" name="last_name" type="text" :label="__('Apellido')" required />
-            <x-splade-select name="specialties_id" :label="__('Especialidad')" required>
+            <x-splade-select name="specialty_id" :label="__('Especialidad')" required>
                 <option value="" disabled selected>{{ __('Seleccione una especialidad') }}</option>
                 @foreach ($specialties as $specialty)
                 <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>

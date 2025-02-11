@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 class Schedules extends Model
 {
@@ -27,7 +28,6 @@ class Schedules extends Model
         return $this->belongsTo(Doctors::class, 'doctor_id');
     }
 
-    // Método para obtener los bloques de tiempo disponibles (lo explico más adelante)
     public function getTimeSlots()
     {
         $start = Carbon::parse($this->start_time);

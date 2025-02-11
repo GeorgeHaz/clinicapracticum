@@ -4,7 +4,7 @@
     </h2>
 
     <x-splade-form :default="$appointment" :action="route('appointments.update', $appointment)" method="patch">
-        <x-splade-select name="patients_id" :label="__('Paciente')">
+        <x-splade-select name="patient_id" :label="__('Paciente')">
             <option value="" disabled>{{ __('Seleccione un paciente') }}</option>
             @foreach ($patients as $patient)
             <option value="{{ $patient->id }}" @selected(old('patients_id', $appointment->patients_id) == $patient->id)>
@@ -13,7 +13,7 @@
             @endforeach
         </x-splade-select>
 
-        <x-splade-select name="specialties_id" :label="__('Especialidad')">
+        <x-splade-select name="specialty_id" :label="__('Especialidad')">
             <option value="" disabled selected>{{ __('Seleccione una especialidad') }}</option>
             @foreach ($specialties as $specialty)
             <option value="{{ $specialty->id }}" @selected(old('specialties_id', $appointment->specialties_id) == $specialty->id)>
@@ -22,7 +22,7 @@
             @endforeach
         </x-splade-select>
 
-        <x-splade-select name="doctors_id" :label="__('Médico')">
+        <x-splade-select name="doctor_id" :label="__('Médico')">
             <option value="" disabled>{{ __('Seleccione un médico') }}</option>
             @foreach ($doctors as $doctor)
             <option value="{{ $doctor->id }}" @selected(old('doctors_id', $appointment->doctors_id) == $doctor->id)>

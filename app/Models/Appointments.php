@@ -14,9 +14,9 @@ class Appointments extends Model
 
     protected $fillable = [
         'id',
-        'patients_id',
-        'doctors_id',
-        'specialties_id',
+        'patient_id',
+        'doctor_id',
+        'specialty_id',
         'appointments_date',
         'start_time',
         'end_time',
@@ -34,18 +34,18 @@ class Appointments extends Model
     // Relación con Paciente
     public function patient()
     {
-        return $this->belongsTo(Patients::class, 'patients_id');
+        return $this->belongsTo(Patients::class, 'patient_id');
     }
 
     // Relación con Médico (Usuario)
     public function doctor()
     {
-        return $this->belongsTo(Doctors::class, 'doctors_id');
+        return $this->belongsTo(Doctors::class, 'doctor_id');
     }
 
     // Relación con Especialidad
     public function specialty()
     {
-        return $this->belongsTo(Specialties::class, 'specialties_id');
+        return $this->belongsTo(Specialties::class, 'specialty_id');
     }
 }

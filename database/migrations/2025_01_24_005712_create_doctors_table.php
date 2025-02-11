@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->string('email');
-            $table->unsignedBigInteger('specialties_id');
+            $table->unsignedBigInteger('specialty_id');
             $table->string('address');
             $table->string('phone');
             $table->unsignedBigInteger('user_id')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('specialties_id')->references('id')->on('specialties');
+            $table->foreign('specialty_id')->references('id')->on('specialties');
         });
     }
 

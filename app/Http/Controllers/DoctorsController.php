@@ -41,7 +41,7 @@ class DoctorsController extends Controller
             'address' => 'required',
             'phone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
-            'specialties_id' => 'required|exists:specialties,id',
+            'specialty_id' => 'required|exists:specialties,id',
         ]);
 
         $doctor = Doctors::create($validatedData);
@@ -83,7 +83,7 @@ class DoctorsController extends Controller
             'address' => 'required',
             'phone' => 'required|max:255',
             'email' => 'nullable|email:rfc,dns',
-            'specialties_id' => 'required|exists:specialties,id',
+            'specialty_id' => 'required|exists:specialties,id',
         ]);
 
         $doctor->update($validatedData);

@@ -48,9 +48,8 @@ class AppointmentsTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->withGlobalSearch(columns: ['id','patient.name','doctor.name'])
-            ->column('id', sortable: true)
-            ->column('patient.name','Paciente', sortable: true)
+            ->withGlobalSearch(columns: ['patient.name','doctor.name'])
+            ->column('patient.name','Paciente', sortable: true, searchable:true)
             ->column('doctor.name','Medico', sortable: true)
             ->column('specialty.name','Especialidad')
             ->column('appointments_date','Fecha de Cita')

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 
 class Doctors extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'id',
@@ -16,7 +17,7 @@ class Doctors extends Model
         'name',
         'last_name',
         'email',
-        'specialties_id',
+        'specialty_id',
         'address',
         'phone',
         'user_id'
@@ -44,6 +45,6 @@ class Doctors extends Model
     
     public function specialty()
     {
-        return $this->belongsTo(Specialties::class, 'specialties_id');
+        return $this->belongsTo(Specialties::class, 'specialty_id');
     }
 }
