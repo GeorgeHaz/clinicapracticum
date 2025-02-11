@@ -1,23 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Registrar Horarios') }}
+            {{ __('Schedules') }}
         </h2>
     </x-slot>
 
-    <x-splade-select name="doctors_id" :label="__('Médico')">
-        <option value="" disabled selected>{{ __('Seleccione un médico') }}</option>
-        @foreach ($doctors as $doctor)
-        <option value="{{ $doctor->id }}">{{ $doctor->name }} {{ $doctor->last_name }} ({{ $doctor->specialty->name }})</option>
-        @endforeach
-    </x-splade-select>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl" dusk="schedules-create">
+                    @include('schedules.create')
+                </div>
+            </div>
 
-    <x-splade-input type="date" name="appointment_date" :label="__('Fecha')" />
-
-    <x-splade-select name="start_time" :label="__('Hora')">
-        {{-- Aquí se mostrarían las opciones de hora, generadas dinámicamente --}}
-        @foreach($availableTimeSlots as $timeSlot)
-        <option value="{{ $timeSlot }}">{{ $timeSlot }}</option>
-        @endforeach
-    </x-splade-select>
+        </div>
+    </div>
 </x-app-layout>
